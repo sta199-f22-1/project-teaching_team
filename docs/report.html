@@ -20,69 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -162,7 +118,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-data" id="toc-introduction-and-data" class="nav-link active" data-scroll-target="#introduction-and-data">Introduction and data</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory data analysis</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -185,34 +154,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ ggplot2 3.4.0      ✔ purrr   0.3.5 
-✔ tibble  3.1.8      ✔ dplyr   1.0.10
-✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-✔ readr   2.1.3      ✔ forcats 0.5.2 
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()</code></pre>
-</div>
-</div>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sapien, finibus sed arcu in, feugiat pulvinar leo. Donec accumsan rutrum ultrices. Sed nec maximus urna, eget commodo purus. Nam porttitor augue et arcu tristique hendrerit. Ut dapibus nisl a lorem convallis vulputate. Nullam elit magna, molestie a neque in, luctus feugiat ante. Pellentesque lectus arcu, cursus in risus auctor, tempor suscipit turpis. In nec libero augue. Proin sagittis, sem sed tempor facilisis, sem velit dictum dui, venenatis fringilla nisi urna quis neque. Praesent vitae egestas enim, nec pretium nisl. Cras eu ipsum ut mi scelerisque dapibus eu sit amet nibh. Phasellus vestibulum fermentum massa at porta. Donec auctor molestie tempus. Quisque vitae mauris non sapien gravida sodales eget nec justo. Maecenas accumsan sem nec ultrices fringilla.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 344 Columns: 8
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (3): species, island, sex
-dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
 
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<section id="introduction-and-data" class="level1">
+<h1>Introduction and data</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sapien, finibus sed arcu in, feugiat pulvinar leo. Donec accumsan rutrum ultrices. Sed nec maximus urna, eget commodo purus. Nam porttitor augue et arcu tristique hendrerit. Ut dapibus nisl a lorem convallis vulputate. Nullam elit magna, molestie a neque in, luctus feugiat ante. Pellentesque lectus arcu, cursus in risus auctor, tempor suscipit turpis. In nec libero augue.</p>
+<div class="cell">
+
+</div>
+<p>Proin sagittis, sem sed tempor facilisis, sem velit dictum dui, venenatis fringilla nisi urna quis neque. Praesent vitae egestas enim, nec pretium nisl. Cras eu ipsum ut mi scelerisque dapibus eu sit amet nibh.</p>
+<p>Phasellus vestibulum fermentum massa at porta. Donec auctor molestie tempus. Quisque vitae mauris non sapien gravida sodales eget nec justo. Maecenas accumsan sem nec ultrices fringilla. This dataset contains information on 344 penguins.<span class="citation" data-cites="horst2020">(<a href="#ref-horst2020" role="doc-biblioref">Horst, Hill, and Gorman 2020</a>)</span></p>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="480"></p>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="report_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="480"></p>
 </div>
 </div>
-<p>Etiam fermentum ultricies massa id tempor. Donec ex mi, consectetur nec blandit vitae, rhoncus vel lectus. Nulla massa nisi, sollicitudin vitae egestas eu, eleifend vel sem. Morbi fringilla elementum dolor, non scelerisque leo malesuada sed. Nullam id magna lorem. Vivamus pulvinar lobortis vulputate. Phasellus tincidunt laoreet euismod. Vivamus vulputate dictum massa. Aenean venenatis eros sed ante venenatis, ut consectetur orci efficitur.</p>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="methodology" class="level1">
+<h1>Methodology</h1>
+<p>Etiam fermentum ultricies massa id tempor. Donec ex mi, consectetur nec blandit vitae, rhoncus vel lectus.</p>
+<section id="exploratory-data-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory data analysis</h2>
+<p>Nulla massa nisi, sollicitudin vitae egestas eu, eleifend vel sem. Morbi fringilla elementum dolor, non scelerisque leo malesuada sed. Nullam id magna lorem. Vivamus pulvinar lobortis vulputate.</p>
+</section>
+<section id="modeling" class="level2">
+<h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
+<p>Phasellus tincidunt laoreet euismod. Vivamus vulputate dictum massa. Aenean venenatis eros sed ante venenatis, ut consectetur orci efficitur.</p>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
 <p>Vivamus lacinia varius orci, sed pretium quam scelerisque id. Quisque congue lorem vitae lacus placerat efficitur. Aliquam lobortis urna dui, eget gravida purus ornare id. Duis sit amet lorem et elit iaculis congue nec sit amet lorem. Fusce et vestibulum nisl. Duis sagittis ante nisl, ac imperdiet metus dictum eu. Quisque quis tellus tincidunt, tincidunt ipsum eget, maximus nisl. Nulla non mollis enim.</p>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
 <p>Cras pulvinar eros nec porta aliquam. Integer ultrices dui at leo maximus, a aliquet quam hendrerit. Nulla lacinia, tellus fermentum dictum vehicula, sapien neque luctus diam, in euismod diam diam interdum lectus. Nam sed accumsan ex. Vestibulum iaculis ligula et massa feugiat, ut feugiat erat varius. Morbi semper, est eleifend scelerisque vulputate, eros risus sagittis sapien, in cursus diam elit eget justo. Vivamus auctor tortor vitae fringilla dapibus. Aenean dapibus, dolor vitae posuere cursus, urna urna porttitor augue, id varius lectus leo ac nunc. Nulla suscipit elit in viverra volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Sed condimentum fringilla nulla, aliquam faucibus dolor tristique vitae. Phasellus sit amet est eget justo pretium tincidunt.</p>
 <p>Aliquam elit justo, dapibus eget pretium et, rhoncus vel dui. Vivamus eu metus lacinia, posuere tellus eu, tristique metus. Fusce diam diam, tristique ut purus porttitor, vulputate faucibus nisl. Sed in consectetur neque, non consectetur mauris. Curabitur pellentesque felis vel nunc tempus sollicitudin. Cras vitae suscipit nulla. Nullam auctor suscipit feugiat. Ut nec iaculis eros. Etiam hendrerit, massa nec egestas elementum, ex lectus tempus nulla, rhoncus efficitur sem leo sit amet ante. Duis et egestas mi. Nulla sodales pulvinar elit, vel tempus ex semper in. Vivamus bibendum euismod lorem quis facilisis. Donec risus sem, consequat id felis ut, eleifend ullamcorper elit.</p>
 <p>Aenean ut orci elit. Fusce aliquam iaculis finibus. Sed nibh erat, tristique quis diam et, molestie dignissim odio. Vivamus sed magna ante. Duis a varius nunc, id tempor justo. Praesent posuere libero congue lorem vulputate, sollicitudin ullamcorper sem placerat. Mauris quam ante, mattis quis odio et, rhoncus scelerisque turpis. Pellentesque efficitur eros ac nibh dapibus, vitae facilisis eros pharetra. Quisque quis nisl at arcu vulputate molestie. Sed at bibendum arcu. Vivamus gravida mi eu enim laoreet, eget lobortis massa elementum. Donec metus neque, consectetur quis iaculis sed, aliquam eu nunc.</p>
@@ -223,7 +211,13 @@ dbl (5): bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, year
 
 
 
-</main> <!-- /main -->
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-horst2020" class="csl-entry" role="doc-biblioentry">
+Horst, Allison M, Alison Presmanes Hill, and Kristen B Gorman. 2020. <em>Allisonhorst/Palmerpenguins: V0.1.0</em>. Zenodo. <a href="https://doi.org/10.5281/ZENODO.3960218">https://doi.org/10.5281/ZENODO.3960218</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

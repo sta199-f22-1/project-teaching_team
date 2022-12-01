@@ -4,22 +4,78 @@ subtitle: "Report"
 format: html
 editor: visual
 execute:
-  echo: true
+  echo: false
+bibliography: references.bib
 ---
 
 ```{r}
+#| label: load-packages
+#| message: false
+
 library(tidyverse)
+library(patchwork)
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sapien, finibus sed arcu in, feugiat pulvinar leo. Donec accumsan rutrum ultrices. Sed nec maximus urna, eget commodo purus. Nam porttitor augue et arcu tristique hendrerit. Ut dapibus nisl a lorem convallis vulputate. Nullam elit magna, molestie a neque in, luctus feugiat ante. Pellentesque lectus arcu, cursus in risus auctor, tempor suscipit turpis. In nec libero augue. Proin sagittis, sem sed tempor facilisis, sem velit dictum dui, venenatis fringilla nisi urna quis neque. Praesent vitae egestas enim, nec pretium nisl. Cras eu ipsum ut mi scelerisque dapibus eu sit amet nibh. Phasellus vestibulum fermentum massa at porta. Donec auctor molestie tempus. Quisque vitae mauris non sapien gravida sodales eget nec justo. Maecenas accumsan sem nec ultrices fringilla.
+# Introduction and data
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nibh sapien, finibus sed arcu in, feugiat pulvinar leo. Donec accumsan rutrum ultrices. Sed nec maximus urna, eget commodo purus. Nam porttitor augue et arcu tristique hendrerit. Ut dapibus nisl a lorem convallis vulputate. Nullam elit magna, molestie a neque in, luctus feugiat ante. Pellentesque lectus arcu, cursus in risus auctor, tempor suscipit turpis. In nec libero augue.
 
 ```{r}
+#| label: load-data
+#| message: false
+
 penguins <- read_csv("data/penguins.csv")
 ```
 
-Etiam fermentum ultricies massa id tempor. Donec ex mi, consectetur nec blandit vitae, rhoncus vel lectus. Nulla massa nisi, sollicitudin vitae egestas eu, eleifend vel sem. Morbi fringilla elementum dolor, non scelerisque leo malesuada sed. Nullam id magna lorem. Vivamus pulvinar lobortis vulputate. Phasellus tincidunt laoreet euismod. Vivamus vulputate dictum massa. Aenean venenatis eros sed ante venenatis, ut consectetur orci efficitur.
+Proin sagittis, sem sed tempor facilisis, sem velit dictum dui, venenatis fringilla nisi urna quis neque. Praesent vitae egestas enim, nec pretium nisl. Cras eu ipsum ut mi scelerisque dapibus eu sit amet nibh.
+
+Phasellus vestibulum fermentum massa at porta. Donec auctor molestie tempus. Quisque vitae mauris non sapien gravida sodales eget nec justo. Maecenas accumsan sem nec ultrices fringilla. This dataset contains information on `r nrow(penguins)` penguins.[@horst2020]
+
+```{r}
+#| fig-width: 5
+#| fig-height: 3
+#| layout-ncol: 2
+#| warning: false
+
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
+```
+
+```{r}
+layout <- c(
+  area(t = 2, l = 1, b = 5, r = 4),
+  area(t = 1, l = 3, b = 3, r = 5)
+)
+
+p1 <- ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
+
+p2 <- ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill")
+
+p1 + p2 + 
+  plot_layout(design = layout)
+```
+
+# Methodology
+
+Etiam fermentum ultricies massa id tempor. Donec ex mi, consectetur nec blandit vitae, rhoncus vel lectus.
+
+## Exploratory data analysis
+
+Nulla massa nisi, sollicitudin vitae egestas eu, eleifend vel sem. Morbi fringilla elementum dolor, non scelerisque leo malesuada sed. Nullam id magna lorem. Vivamus pulvinar lobortis vulputate.
+
+## Modeling
+
+Phasellus tincidunt laoreet euismod. Vivamus vulputate dictum massa. Aenean venenatis eros sed ante venenatis, ut consectetur orci efficitur.
+
+# Results
 
 Vivamus lacinia varius orci, sed pretium quam scelerisque id. Quisque congue lorem vitae lacus placerat efficitur. Aliquam lobortis urna dui, eget gravida purus ornare id. Duis sit amet lorem et elit iaculis congue nec sit amet lorem. Fusce et vestibulum nisl. Duis sagittis ante nisl, ac imperdiet metus dictum eu. Quisque quis tellus tincidunt, tincidunt ipsum eget, maximus nisl. Nulla non mollis enim.
+
+# Discussion
 
 Cras pulvinar eros nec porta aliquam. Integer ultrices dui at leo maximus, a aliquet quam hendrerit. Nulla lacinia, tellus fermentum dictum vehicula, sapien neque luctus diam, in euismod diam diam interdum lectus. Nam sed accumsan ex. Vestibulum iaculis ligula et massa feugiat, ut feugiat erat varius. Morbi semper, est eleifend scelerisque vulputate, eros risus sagittis sapien, in cursus diam elit eget justo. Vivamus auctor tortor vitae fringilla dapibus. Aenean dapibus, dolor vitae posuere cursus, urna urna porttitor augue, id varius lectus leo ac nunc. Nulla suscipit elit in viverra volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Sed condimentum fringilla nulla, aliquam faucibus dolor tristique vitae. Phasellus sit amet est eget justo pretium tincidunt.
 
